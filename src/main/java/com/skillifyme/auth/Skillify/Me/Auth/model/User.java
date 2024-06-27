@@ -27,4 +27,5 @@ public class User {
     private List<String> roles;
     private String otp;
     private LocalDateTime otpExpirationTime;
+    private boolean isVerified = false;
 }
