@@ -13,11 +13,11 @@ public class EmailService {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    public void verifyEmail(String to, String body) {
+    public void sendEmail(String to,String subject, String body) {
         try {
             SimpleMailMessage mail = new SimpleMailMessage();
             mail.setTo(to);
-            mail.setSubject("Confirm your email");
+            mail.setSubject(subject);
             mail.setText(body);
             javaMailSender.send(mail);
         } catch (Exception e) {
