@@ -1,22 +1,39 @@
 package com.skillifyme.auth.Skillify.Me.Auth.controller;
 
+import com.skillifyme.auth.Skillify.Me.Auth.model.User;
+import com.skillifyme.auth.Skillify.Me.Auth.service.UserDetailsServiceImpl;
 import com.skillifyme.auth.Skillify.Me.Auth.service.registration.RegisterUserService;
+import com.skillifyme.auth.Skillify.Me.Auth.utils.JwtUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
+@Slf4j
 @RestController
-@RequestMapping("public")
-public class PublicController {
+@RequestMapping("register")
+public class RegisterUserController {
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private UserDetailsServiceImpl userDetailsService;
+
+    @Autowired
+    private JwtUtils jwtUtil;
 
     @Autowired
     private RegisterUserService registerUserService;
 
-    @PutMapping("create-user")
-    public ResponseEntity<?> createNewUser(@RequestBody Map<String, String> user) {
+    @PutMapping("signup")
+    public ResponseEntity<?> signupUser(@RequestBody Map<String, String> user) {
         if (user != null) {
             String email = user.get("email");
             String userName = user.get("userName");
@@ -36,15 +53,34 @@ public class PublicController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<String> loginUser(@RequestBody User user) {
+        boolean isVerified = registerUserService.checkEmailVerification(user.getEmail());
+        if (isVerified) {
+            try{
+                authenticationManager.authenticate(
+                        new UsernamePasswordAuthenticationToken(user.getUserName(), user.getPassword()));
+                UserDetails userDetails = userDetailsService.loadUserByEmail(user.getEmail());
+                String jwt = jwtUtil.generateToken(userDetails.getUsername());
+                return new ResponseEntity<>(jwt, HttpStatus.OK);
+            }catch (Exception e){
+                log.error("Exception occurred while createAuthenticationToken ", e);
+                return new ResponseEntity<>("Incorrect username or password", HttpStatus.BAD_REQUEST);
+            }
+        } else {
+            return new ResponseEntity<>("Incorrect email id", HttpStatus.UNAUTHORIZED);
+        }
+    }
+
     @PutMapping("/verify-otp")
     public ResponseEntity<?> verifyOtp(@RequestBody Map<String, String> user) {
         String email = user.get("email");
         String otp = user.get("otp");
         boolean isVerified = registerUserService.verifyOtp(email, otp);
         if (isVerified) {
-            return new ResponseEntity<>("User verified successfully."+ true, HttpStatus.OK);
+            return new ResponseEntity<>("Email verified successfully."+ isVerified, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("Invalid OTP or OTP expired."+ false, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Invalid OTP or OTP expired."+ isVerified, HttpStatus.BAD_REQUEST);
         }
     }
 

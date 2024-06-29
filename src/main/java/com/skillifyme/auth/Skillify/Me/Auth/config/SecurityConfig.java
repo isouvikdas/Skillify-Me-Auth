@@ -1,5 +1,6 @@
 package com.skillifyme.auth.Skillify.Me.Auth.config;
 
+import com.skillifyme.auth.Skillify.Me.Auth.filter.JwtFilter;
 import com.skillifyme.auth.Skillify.Me.Auth.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -13,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @EnableWebSecurity
 @Configuration
@@ -21,14 +23,17 @@ public class SecurityConfig {
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
 
+    @Autowired
+    private JwtFilter jwtFilter;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests(request -> request
-                        .requestMatchers("/public/**", "/admin/**").permitAll()
+                        .requestMatchers("/register/**","/password/**", "/admin/**").permitAll()
                         .requestMatchers( "/user/**").authenticated()
                         .anyRequest().authenticated())
-                .httpBasic(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 
@@ -41,6 +46,8 @@ public class SecurityConfig {
                 .passwordEncoder(passwordEncoder());
         return authenticationManagerBuilder.build();
     }
+
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {
