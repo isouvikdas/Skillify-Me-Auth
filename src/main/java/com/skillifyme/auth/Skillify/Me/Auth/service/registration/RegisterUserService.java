@@ -7,6 +7,7 @@ import com.skillifyme.auth.Skillify.Me.Auth.utils.GenerateOTP;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -25,6 +26,9 @@ public class RegisterUserService {
     @Autowired
     private EmailService emailService;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
 
     public boolean checkEmailVerification(String email) {
         User user = userRepository.findByEmail(email);
@@ -35,7 +39,7 @@ public class RegisterUserService {
         User newUser = userRepository.findByEmail(email);
         newUser.setUserName(userName);
         newUser.setEmail(newUser.getEmail());
-        newUser.setPassword(password);
+        newUser.setPassword(passwordEncoder.encode(password));
         newUser.setDateAndTime(LocalDateTime.now());
         newUser.setRoles(List.of("USER"));
         newUser.setOtp(null);
