@@ -93,3 +93,4 @@ public class RegisterUserController {
         return new ResponseEntity<>("Something wrong happened", HttpStatus.BAD_REQUEST);
     }
 }
+
