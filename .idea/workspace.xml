@@ -5,26 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e13d92a-0e91-46f6-9349-7afdb72c3860" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/controller/ResetPasswordController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/controller/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/filter/JwtFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/service/PasswordService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/utils/JwtUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/controller/PublicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/controller/RegisterUserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/service/UserDetailsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/service/UserDetailsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/service/registration/RegisterUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/service/registration/RegisterUserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/service/registration/user/LoginUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/service/registration/user/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/config/SecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/controller/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/controller/RegisterUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/controller/RegisterUserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/service/registration/RegisterUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/service/RegisterUserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/controller/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/controller/AdminController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/controller/PublicController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/service/UserDetailsServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/service/UserDetailsServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/service/UserRegistration/EmailService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/service/UserRegistration/UserService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/controller/RegisterUserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/controller/RegisterUserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/service/registration/RegisterUserService.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,15 +46,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.SkillifyMeAuthApplication.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "auth",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Skillify-Me-Auth"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.SkillifyMeAuthApplication.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;auth&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Skillify-Me-Auth&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="SkillifyMeAuthApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.skillifyme.auth.Skillify.Me.Auth.SkillifyMeAuthApplication" />

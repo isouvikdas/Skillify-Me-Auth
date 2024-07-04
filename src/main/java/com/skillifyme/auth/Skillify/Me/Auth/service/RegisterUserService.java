@@ -1,8 +1,7 @@
-package com.skillifyme.auth.Skillify.Me.Auth.service.registration;
+package com.skillifyme.auth.Skillify.Me.Auth.service;
 
 import com.skillifyme.auth.Skillify.Me.Auth.model.User;
 import com.skillifyme.auth.Skillify.Me.Auth.repository.UserRepository;
-import com.skillifyme.auth.Skillify.Me.Auth.service.EmailService;
 import com.skillifyme.auth.Skillify.Me.Auth.utils.GenerateOTP;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
