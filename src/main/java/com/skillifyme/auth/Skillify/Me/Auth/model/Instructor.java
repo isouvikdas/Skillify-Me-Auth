@@ -11,8 +11,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
-@Document(collection = "Users")
-public class User implements AuthUser{
+@Document(collection = "Instructors")
+public class Instructor implements AuthUser{
     @Id
     private ObjectId id;
     @NonNull

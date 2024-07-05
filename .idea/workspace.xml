@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e13d92a-0e91-46f6-9349-7afdb72c3860" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/model/AuthUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/model/Instructor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/model/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,8 +18,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -47,6 +50,11 @@
     &quot;last_opened_file_path&quot;: &quot;D:/Skillify-Me-Auth&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.skillifyme.auth.Skillify.Me.Auth.model" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="SkillifyMeAuthApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.skillifyme.auth.Skillify.Me.Auth.SkillifyMeAuthApplication" />
