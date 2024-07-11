@@ -1,7 +1,7 @@
 package com.skillifyme.auth.Skillify.Me.Auth.controller;
 
 import com.skillifyme.auth.Skillify.Me.Auth.model.User;
-import com.skillifyme.auth.Skillify.Me.Auth.service.RegisterUserService;
+import com.skillifyme.auth.Skillify.Me.Auth.service.RegisterService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,12 +18,12 @@ import java.util.List;
 public class AdminController {
 
     @Autowired
-    private RegisterUserService registerUserService;
+    private RegisterService registerService;
 
     @GetMapping("all-users")
     public ResponseEntity<?> getAllUsers() {
         try {
-            List<User> users =  registerUserService.getAll();
+            List<User> users =  registerService.getAll();
             return new ResponseEntity<>(users, HttpStatus.OK);
         } catch (Exception e) {
             log.error("error "+ e);

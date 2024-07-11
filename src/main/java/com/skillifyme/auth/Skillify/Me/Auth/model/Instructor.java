@@ -28,14 +28,4 @@ public class Instructor implements AuthUser{
     private String otp;
     private LocalDateTime otpExpirationTime;
     private boolean isVerified = false;
-
-    @Override
-    public String getUsername() {
-        return this.userName;
-    }
-
-    @Override
-    public void setUsername(String username) {
-        this.userName = username;
-    }
 }

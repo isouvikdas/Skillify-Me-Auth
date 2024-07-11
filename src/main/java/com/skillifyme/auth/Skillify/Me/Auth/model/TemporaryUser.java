@@ -12,7 +12,7 @@ import java.util.List;
 
 @Data
 @Document(collection = "Users")
-public class User implements AuthUser{
+public class TemporaryUser implements AuthUser{
     @Id
     private ObjectId id;
     @NonNull
@@ -28,4 +28,5 @@ public class User implements AuthUser{
     private String otp;
     private LocalDateTime otpExpirationTime;
     private boolean isVerified = false;
+    private String userType;
 }

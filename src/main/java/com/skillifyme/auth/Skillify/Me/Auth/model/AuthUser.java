@@ -6,7 +6,7 @@ import java.util.List;
 public interface AuthUser {
 
     String getEmail();
-    String getUsername();
+    String getUserName();
     String getPassword();
     LocalDateTime getDateAndTime();
     List<String> getRoles();
@@ -15,7 +15,7 @@ public interface AuthUser {
     boolean isVerified();
 
     void setEmail(String email);
-    void setUsername(String username);
+    void setUserName(String username);
     void setPassword(String password);
     void setDateAndTime(LocalDateTime dateAndTime);
     void setRoles(List<String> roles);

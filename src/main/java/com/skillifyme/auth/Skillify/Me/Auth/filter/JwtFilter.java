@@ -1,7 +1,7 @@
 package com.skillifyme.auth.Skillify.Me.Auth.filter;
 
 
-import com.skillifyme.auth.Skillify.Me.Auth.service.UserDetailsServiceImpl;
+import com.skillifyme.auth.Skillify.Me.Auth.service.AuthService;
 import com.skillifyme.auth.Skillify.Me.Auth.utils.JwtUtils;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -24,7 +24,7 @@ public class JwtFilter extends OncePerRequestFilter {
     private JwtUtils jwtUtils;
 
     @Autowired
-    private UserDetailsServiceImpl userDetailsService;
+    private AuthService authService;
 
     @Override
     protected void doFilterInternal(
@@ -40,7 +40,7 @@ public class JwtFilter extends OncePerRequestFilter {
             username = jwtUtils.extractUsername(jwt);
         }
         if (username != null) {
-            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+            UserDetails userDetails = authService.loadUserByUsername(username);
             if (jwtUtils.validateToken(jwt)) {
                 UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities());
