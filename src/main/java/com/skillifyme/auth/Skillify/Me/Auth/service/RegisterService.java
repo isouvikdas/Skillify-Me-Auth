@@ -49,6 +49,11 @@ public class RegisterService {
         }
     }
 
+    public boolean checkEmailVerificationForLogin(String email, String userType) {
+        AuthUser authUser = findUserByEmailAndType(email, userType);
+        return authUser != null && authUser.isVerified();
+    }
+
     public void saveNewUser(String email, String userName, String password, String userType) {
         AuthUser newUser = findUserByEmailAndType(email, userType);
         if (newUser == null) {
@@ -101,7 +106,7 @@ public class RegisterService {
         }
     }
 
-    private AuthUser findUserByEmailAndType(String email, String userType) {
+    public AuthUser findUserByEmailAndType(String email, String userType) {
         if (userType.equalsIgnoreCase("USER")) {
             return userRepository.findByEmail(email);
         } else if (userType.equalsIgnoreCase("INSTRUCTOR")) {

@@ -2,12 +2,16 @@ package com.skillifyme.auth.Skillify.Me.Auth.controller;
 
 import com.skillifyme.auth.Skillify.Me.Auth.model.Instructor;
 import com.skillifyme.auth.Skillify.Me.Auth.model.User;
+import com.skillifyme.auth.Skillify.Me.Auth.service.AuthService;
 import com.skillifyme.auth.Skillify.Me.Auth.service.RegisterService;
+import com.skillifyme.auth.Skillify.Me.Auth.utils.JwtUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -22,6 +26,12 @@ public class RegisterController {
 
     @Autowired
     private RegisterService registerService;
+
+    @Autowired
+    private AuthService authService;
+
+    @Autowired
+    private JwtUtils jwtUtils;
 
     @PutMapping("signup")
     public ResponseEntity<?> signup(@RequestBody Map<String, String> user) {
@@ -67,6 +77,32 @@ public class RegisterController {
             return new ResponseEntity<>("otp has been sent successfully", HttpStatus.OK);
         }
         return new ResponseEntity<>("Something wrong happened", HttpStatus.BAD_REQUEST);
+    }
+
+    @PostMapping("login")
+    public ResponseEntity<String> login(@RequestBody Map<String, String> payload) {
+        String email = payload.get("email");
+        String password = payload.get("password");
+        String userType = payload.get("userType");
+        if (email.isBlank() || password.isBlank() || userType.isBlank()) {
+            return new ResponseEntity<>("email, password & userType is required", HttpStatus.BAD_REQUEST);
+        }
+        boolean isVerified = registerService.checkEmailVerificationForLogin(email, userType);
+        if (isVerified) {
+            try {
+                authenticationManager.authenticate(
+                        new UsernamePasswordAuthenticationToken(email, password));
+                UserDetails user = authService.loadUserByEmailAndType(email, userType);
+                String jwt = jwtUtils.generateToken(user.getUsername());
+                return new ResponseEntity<>(jwt, HttpStatus.OK);
+            } catch (Exception e) {
+                log.error("Exception occurred while createAuthenticationToken ", e);
+                return new ResponseEntity<>("Incorrect email or password", HttpStatus.BAD_REQUEST);
+            }
+        } else {
+            return new ResponseEntity<>("Email not verified", HttpStatus.UNAUTHORIZED);
+        }
+
     }
 }
 

@@ -5,4 +5,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface AuthService extends UserDetailsService {
     UserDetails loadUserByEmail(String email);
+
+    UserDetails loadUserByEmailAndType(String email, String userType);
 }

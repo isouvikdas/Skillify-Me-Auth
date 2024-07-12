@@ -6,16 +6,21 @@
   <component name="ChangeListManager">
     <list default="true" id="3e13d92a-0e91-46f6-9349-7afdb72c3860" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/controller/AdminController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/controller/AuthUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/controller/AuthUserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/controller/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/controller/RegisterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/model/AuthUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/model/AuthUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/model/Instructor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/model/Instructor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/model/TemporaryUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/model/TemporaryUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/repository/TemporaryUserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/repository/TemporaryUserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/filter/JwtFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/filter/JwtFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/service/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/service/AuthServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/service/RegisterService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/service/RegisterService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/utils/JwtUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/utils/JwtUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/controller/AuthUserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/controller/AuthUserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/controller/RegisterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/controller/RegisterController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/filter/JwtFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/filter/JwtFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/service/AuthService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/service/AuthService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/service/AuthServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/service/AuthServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/service/RegisterService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/service/RegisterService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/service/UserService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,6 +97,17 @@
       <updated>1718371374223</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
