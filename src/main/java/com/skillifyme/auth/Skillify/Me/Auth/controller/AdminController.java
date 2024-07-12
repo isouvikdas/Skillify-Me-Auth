@@ -20,14 +20,14 @@ public class AdminController {
     @Autowired
     private RegisterService registerService;
 
-    @GetMapping("all-users")
-    public ResponseEntity<?> getAllUsers() {
-        try {
-            List<User> users =  registerService.getAll();
-            return new ResponseEntity<>(users, HttpStatus.OK);
-        } catch (Exception e) {
-            log.error("error "+ e);
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
+//    @GetMapping("all-users")
+//    public ResponseEntity<?> getAllUsers() {
+//        try {
+//            List<User> users =  registerService.getAll();
+//            return new ResponseEntity<>(users, HttpStatus.OK);
+//        } catch (Exception e) {
+//            log.error("error "+ e);
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//    }
 }

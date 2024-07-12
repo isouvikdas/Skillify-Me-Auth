@@ -15,8 +15,7 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-
-    public void updateUserName(String currentUserName, String newUserName) {
+    public void updateUserName(String currentUserName, String newUserName, String userType) {
         User currentUser = userRepository.findByUserName(currentUserName);
         currentUser.setUserName(newUserName);
         userRepository.save(currentUser);
@@ -27,6 +26,4 @@ public class UserService {
         currentUser.setPassword(passwordEncoder.encode(newPassword));
         userRepository.save(currentUser);
     }
-
-
 }

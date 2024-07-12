@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
-@Document(collection = "Users")
+@Document(collection = "TemporaryUsers")
 public class TemporaryUser implements AuthUser{
     @Id
     private ObjectId id;

@@ -28,4 +28,5 @@ public class User implements AuthUser{
     private String otp;
     private LocalDateTime otpExpirationTime;
     private boolean isVerified = false;
+    private String userType;
 }

@@ -13,6 +13,7 @@ public interface AuthUser {
     String getOtp();
     LocalDateTime getOtpExpirationTime();
     boolean isVerified();
+    String getUserType();
 
     void setEmail(String email);
     void setUserName(String username);
@@ -22,4 +23,5 @@ public interface AuthUser {
     void setOtp(String otp);
     void setOtpExpirationTime(LocalDateTime otpExpirationTime);
     void setVerified(boolean verified);
+    void setUserType(String userType);
 }

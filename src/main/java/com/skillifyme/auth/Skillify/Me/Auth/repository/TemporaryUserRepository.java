@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface TemporaryUserRepository extends MongoRepository<TemporaryUser, ObjectId> {
 
     TemporaryUser findByEmail(String email);
+
+    TemporaryUser findByEmailAndUserType(String email, String userType);
 }

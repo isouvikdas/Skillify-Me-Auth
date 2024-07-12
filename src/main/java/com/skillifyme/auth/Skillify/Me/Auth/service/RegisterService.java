@@ -10,7 +10,6 @@ import com.skillifyme.auth.Skillify.Me.Auth.repository.UserRepository;
 import com.skillifyme.auth.Skillify.Me.Auth.utils.GenerateOTP;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -40,74 +39,75 @@ public class RegisterService {
     private TemporaryUserRepository temporaryUserRepository;
 
 
-    public boolean checkEmailVerification(String email) {
-        AuthUser authUser = userRepository.findByEmail(email);
-        if (authUser == null) {
-            authUser = instructorRepository.findByEmail(email);
-        }
-        return authUser.isVerified();
-    }
-
-    public void saveNewUser(String email,
-                            String userName,
-                            String password,
-                            Class<? extends AuthUser> userType) {
-        AuthUser newUser;
-        if (userType.equals(User.class)) {
-            newUser = userRepository.findByEmail(email);
-            newUser.setRoles(List.of("USER"));
+    public boolean checkEmailVerification(String email, String userType) {
+        AuthUser authUser = findUserByEmailAndType(email, userType);
+        if (authUser != null) {
+            return authUser.isVerified();
         } else {
-            newUser = instructorRepository.findByEmail(email);
-            newUser.setRoles(List.of("INSTRUCTOR"));
-        }
-        newUser.setUserName(userName);
-        newUser.setPassword(passwordEncoder.encode(password));
-        newUser.setDateAndTime(LocalDateTime.now());
-        if (userType.equals(User.class)) {
-            userRepository.save((User) newUser);
-        } else {
-            instructorRepository.save((Instructor) newUser);
+            TemporaryUser tempUser = temporaryUserRepository.findByEmailAndUserType(email, userType.toUpperCase());
+            return tempUser != null && tempUser.isVerified();
         }
     }
 
-
-    public boolean verifyOtp(String email, String otp) throws UsernameNotFoundException {
-        AuthUser authUser = userRepository.findByEmail(email);
-        if (authUser == null) {
-            authUser = instructorRepository.findByEmail(email);
-        }
-        if (authUser == null) {
-            throw new UsernameNotFoundException("User not found");
-        }
-        if (authUser.getOtp().equals(otp) && LocalDateTime.now().isBefore(authUser.getOtpExpirationTime())) {
-            authUser.setOtp(null);
-            authUser.setOtpExpirationTime(null);
-            authUser.setVerified(true);
-            if (authUser instanceof User) {
-                userRepository.save((User) authUser);
-            } else {
-                instructorRepository.save((Instructor) authUser);
+    public void saveNewUser(String email, String userName, String password, String userType) {
+        AuthUser newUser = findUserByEmailAndType(email, userType);
+        if (newUser == null) {
+            TemporaryUser tempUser = temporaryUserRepository.findByEmail(email);
+            if (tempUser != null && tempUser.getUserType().equalsIgnoreCase(userType)) {
+                newUser = userType.equalsIgnoreCase("USER") ?
+                        new User(email, userName, passwordEncoder.encode(password)) :
+                        new Instructor(email, userName, passwordEncoder.encode(password));
+                newUser.setDateAndTime(LocalDateTime.now());
+                newUser.setRoles(List.of(userType.toUpperCase()));
+                newUser.setVerified(tempUser.isVerified());
+                newUser.setUserType(tempUser.getUserType());
+                if (newUser instanceof User) {
+                    userRepository.save((User) newUser);
+                } else {
+                    instructorRepository.save((Instructor) newUser);
+                }
+                temporaryUserRepository.delete(tempUser);
             }
-            return true;
-        } else {
-            return false;
         }
+    }
+
+    public boolean verifyOtp(String email, String otp, String userType) {
+        TemporaryUser tempUser = temporaryUserRepository.findByEmail(email);
+        if (tempUser != null && tempUser.getUserType().equalsIgnoreCase(userType)) {
+            if (tempUser.getOtp().equals(otp) && LocalDateTime.now().isBefore(tempUser.getOtpExpirationTime())) {
+                tempUser.setOtp(null);
+                tempUser.setOtpExpirationTime(null);
+                tempUser.setVerified(true);
+                temporaryUserRepository.save(tempUser);
+                return true;
+            }
+        }
+        return false;
     }
 
     public void sendOtpForVerification(String email, String userType) {
-        String otp = generateOTP.generateOtp();
-        String subject = "Email confirmation";
-        emailService.sendEmail(email, subject, "Your verification code is "+ otp +" valid for 10 minutes");
-        TemporaryUser tempUser = temporaryUserRepository.findByEmail(email);
-        if (tempUser == null) {
-            tempUser = new TemporaryUser("", "", "");
-            tempUser.setEmail(email);
-            tempUser.setRoles(List.of(userType.toUpperCase()));
+        AuthUser existingUser = findUserByEmailAndType(email, userType);
+        if (existingUser == null) {
+            String otp = generateOTP.generateOtp();
+            String subject = "Email confirmation";
+            emailService.sendEmail(email, subject, "Your verification code is " + otp + " valid for 10 minutes");
+            TemporaryUser tempUser = new TemporaryUser(email, "", "");
             tempUser.setUserType(userType.toUpperCase());
+            tempUser.setRoles(List.of(userType.toUpperCase()));
+            tempUser.setOtp(otp);
+            tempUser.setOtpExpirationTime(LocalDateTime.now().plusMinutes(10));
+            tempUser.setDateAndTime(LocalDateTime.now());
+            temporaryUserRepository.save(tempUser);
         }
-        tempUser.setOtp(otp);
-        tempUser.setOtpExpirationTime(LocalDateTime.now().plusMinutes(10));
-        tempUser.setDateAndTime(LocalDateTime.now());
-        temporaryUserRepository.save(tempUser);
     }
+
+    private AuthUser findUserByEmailAndType(String email, String userType) {
+        if (userType.equalsIgnoreCase("USER")) {
+            return userRepository.findByEmail(email);
+        } else if (userType.equalsIgnoreCase("INSTRUCTOR")) {
+            return instructorRepository.findByEmail(email);
+        }
+        return null;
+    }
+
 }

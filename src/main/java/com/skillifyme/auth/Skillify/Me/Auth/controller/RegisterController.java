@@ -33,13 +33,9 @@ public class RegisterController {
             if (email.isBlank() || userName.isBlank() || password.isBlank()) {
                 return new ResponseEntity<>("Email, username, and password are required", HttpStatus.BAD_REQUEST);
             } else {
-                boolean isVerified = registerService.checkEmailVerification(email);
+                boolean isVerified = registerService.checkEmailVerification(email, userType);
                 if (isVerified) {
-                    if (userType.equalsIgnoreCase("USER")) {
-                        registerService.saveNewUser(email, userName, password, User.class);
-                    } else  {
-                        registerService.saveNewUser(email, userName, password, Instructor.class);
-                    }
+                    registerService.saveNewUser(email, userName, password, userType.toUpperCase());
                     return new ResponseEntity<>("User created successfully", HttpStatus.CREATED);
                 } else {
                     return new ResponseEntity<>("Email not verified", HttpStatus.BAD_REQUEST);
@@ -53,7 +49,8 @@ public class RegisterController {
     public ResponseEntity<?> verifyOtp(@RequestBody Map<String, String> user) {
         String email = user.get("email");
         String otp = user.get("otp");
-        boolean isVerified = registerService.verifyOtp(email, otp);
+        String userType = user.get("userType");
+        boolean isVerified = registerService.verifyOtp(email, otp, userType.toUpperCase());
         if (isVerified) {
             return new ResponseEntity<>("Email verified successfully."+ isVerified, HttpStatus.OK);
         } else {
