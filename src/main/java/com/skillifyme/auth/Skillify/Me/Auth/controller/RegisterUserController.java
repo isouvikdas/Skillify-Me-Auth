@@ -53,7 +53,7 @@ public class RegisterUserController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-    @PostMapping("/login")
+    @PostMapping("login")
     public ResponseEntity<String> loginUser(@RequestBody User user) {
         boolean isVerified = registerUserService.checkEmailVerification(user.getEmail());
         if (isVerified) {
