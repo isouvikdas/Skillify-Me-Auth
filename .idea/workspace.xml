@@ -4,27 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e13d92a-0e91-46f6-9349-7afdb72c3860" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/SkillifyMeAuthApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/SkillifyMeAuthApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/SkillifyMeAuthApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/config/SecurityConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/controller/AdminController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/controller/RegisterUserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/controller/ResetPasswordController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/controller/UserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/filter/JwtFilter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/model/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/repository/UserRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/service/EmailService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/service/PasswordService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/service/UserDetailsServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/service/registration/RegisterUserService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/service/registration/user/UserService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/utils/GenerateOTP.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/utils/JwtUtils.class" beforeDir="false" />
-    </list>
+    <list default="true" id="3e13d92a-0e91-46f6-9349-7afdb72c3860" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,6 +20,11 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$USER_HOME$/AppData/Local/Temp/tmp_1_UserController.class" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/Temp/tmp_2_UserController.class" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/Temp/tmp__UserController.class" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -60,7 +45,7 @@
   "keyToString": {
     "Application.SkillifyMeAuthApplication.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "dev",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/Skillify-Me-Auth"
   }
