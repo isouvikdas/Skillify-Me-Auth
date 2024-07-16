@@ -2,17 +2,16 @@ package com.skillifyme.auth.Skillify.Me.Auth.controller;
 
 import com.skillifyme.auth.Skillify.Me.Auth.service.AuthService;
 import com.skillifyme.auth.Skillify.Me.Auth.service.RegisterService;
-import com.skillifyme.auth.Skillify.Me.Auth.service.UserService;
+import com.skillifyme.auth.Skillify.Me.Auth.service.AuthUserService;
 import com.skillifyme.auth.Skillify.Me.Auth.utils.JwtUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Map;
 
 
@@ -22,77 +21,52 @@ import java.util.Map;
 public class AuthUserController {
 
     @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
     private RegisterService registerService;
 
     @Autowired
     private AuthService authService;
 
     @Autowired
-    private UserService userService;
+    private AuthUserService authUserService;
 
     @Autowired
     private JwtUtils jwtUtils;
 
 
-//    @PutMapping("update-username")
-//    public ResponseEntity<?> updateUserName(@RequestBody Map<String, String> payload) {
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        if (authentication == null || !authentication.isAuthenticated()) {
-//            return new ResponseEntity<>("Unauthorized", HttpStatus.UNAUTHORIZED);
-//        } else {
-//            String currentUserName = authentication.getName();
-//            String newUserName = payload.get("userName");
-//            if (newUserName == null) {
-//                return new ResponseEntity<>("Username can't be empty", HttpStatus.BAD_REQUEST);
-//            }
-//            userService.updateUserName(currentUserName, newUserName);
-//            String newJwt = jwtUtils.generateToken(newUserName);
-//            Map<String, Object> response = new HashMap<>();
-//            response.put("new username: ", payload);
-//            response.put("jwt: ", newJwt);
-//            return new ResponseEntity<>(response, HttpStatus.OK);
-//        }
-//    }
+    @PutMapping("update-username")
+    public ResponseEntity<?> updateUserName(@RequestBody Map<String, String> payload) {
+        String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String newUserName = payload.get("userName");
+        String userType = payload.get("userType");
 
-//    @PostMapping("/login")
-//    public ResponseEntity<String> login(@RequestBody User user) {
-//        boolean isVerified = registerService.checkEmailVerificationForLogin(user.getEmail());
-//        if (isVerified) {
-//            try{
-//                authenticationManager.authenticate(
-//                        new UsernamePasswordAuthenticationToken(user.getUserName(), user.getPassword()));
-//                UserDetails userDetails = authService.loadUserByEmail(user.getEmail());
-//                String jwt = jwtUtils.generateToken(userDetails.getUsername());
-//                return new ResponseEntity<>(jwt, HttpStatus.OK);
-//            }catch (Exception e){
-//                log.error("Exception occurred while createAuthenticationToken ", e);
-//                return new ResponseEntity<>("Incorrect username or password", HttpStatus.BAD_REQUEST);
-//            }
-//        } else {
-//            return new ResponseEntity<>("Incorrect email id", HttpStatus.UNAUTHORIZED);
-//        }
-//    }
+        try {
+            authUserService.updateUserName(email, newUserName, userType.toUpperCase());
+            return new ResponseEntity<>("Username updated successfully", HttpStatus.OK);
+        } catch (UsernameNotFoundException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<>("An error occurred", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 
+    @PutMapping("update-password")
+    public ResponseEntity<?> updatePassword(@RequestBody Map<String, String> payload) {
+        String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String newPassword = payload.get("password");
+        String userType = payload.get("userType");
 
-
-
-//    @PutMapping("update-password")
-//    public ResponseEntity<?> updatePassword(@RequestBody Map<String, String> user) {
-//        try {
-//            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//            if (authentication == null || !authentication.isAuthenticated()) {
-//                return new ResponseEntity<>("Unauthorized", HttpStatus.UNAUTHORIZED);
-//            } else {
-//                String userName = authentication.getName();
-//                String newPassword = user.get("password");
-//                userService.updatePassword(userName, newPassword);
-//                return new ResponseEntity<>("Password has been updated successfully", HttpStatus.OK);
-//            }
-//        } catch (Exception e) {
-//            log.error("tagy", e);
-//            return new ResponseEntity<>("Password update failed", HttpStatus.EXPECTATION_FAILED);
-//        }
-//    }
+        try {
+            authUserService.updatePassword(email, newPassword, userType.toUpperCase());
+            return new ResponseEntity<>("Password updated successfully", HttpStatus.OK);
+        } catch (UsernameNotFoundException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<>("An error occurred", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 }

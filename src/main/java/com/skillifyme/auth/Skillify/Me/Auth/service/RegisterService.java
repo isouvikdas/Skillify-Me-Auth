@@ -39,7 +39,7 @@ public class RegisterService {
     private TemporaryUserRepository temporaryUserRepository;
 
 
-    public boolean checkEmailVerification(String email, String userType) {
+    public boolean checkEmailVerificationForCreation(String email, String userType) {
         AuthUser authUser = findUserByEmailAndType(email, userType);
         if (authUser != null) {
             return authUser.isVerified();
@@ -49,7 +49,7 @@ public class RegisterService {
         }
     }
 
-    public boolean checkEmailVerificationForLogin(String email, String userType) {
+    public boolean checkEmailVerification(String email, String userType) {
         AuthUser authUser = findUserByEmailAndType(email, userType);
         return authUser != null && authUser.isVerified();
     }

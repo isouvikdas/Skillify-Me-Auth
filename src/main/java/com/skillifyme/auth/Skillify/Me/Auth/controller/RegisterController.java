@@ -1,7 +1,6 @@
 package com.skillifyme.auth.Skillify.Me.Auth.controller;
 
-import com.skillifyme.auth.Skillify.Me.Auth.model.Instructor;
-import com.skillifyme.auth.Skillify.Me.Auth.model.User;
+import com.skillifyme.auth.Skillify.Me.Auth.model.AuthUser;
 import com.skillifyme.auth.Skillify.Me.Auth.service.AuthService;
 import com.skillifyme.auth.Skillify.Me.Auth.service.RegisterService;
 import com.skillifyme.auth.Skillify.Me.Auth.utils.JwtUtils;
@@ -10,8 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -20,6 +18,9 @@ import java.util.Map;
 @RestController
 @RequestMapping("register")
 public class RegisterController {
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -43,7 +44,7 @@ public class RegisterController {
             if (email.isBlank() || userName.isBlank() || password.isBlank()) {
                 return new ResponseEntity<>("Email, username, and password are required", HttpStatus.BAD_REQUEST);
             } else {
-                boolean isVerified = registerService.checkEmailVerification(email, userType);
+                boolean isVerified = registerService.checkEmailVerificationForCreation(email, userType);
                 if (isVerified) {
                     registerService.saveNewUser(email, userName, password, userType.toUpperCase());
                     return new ResponseEntity<>("User created successfully", HttpStatus.CREATED);
@@ -62,9 +63,9 @@ public class RegisterController {
         String userType = user.get("userType");
         boolean isVerified = registerService.verifyOtp(email, otp, userType.toUpperCase());
         if (isVerified) {
-            return new ResponseEntity<>("Email verified successfully."+ isVerified, HttpStatus.OK);
+            return new ResponseEntity<>("Email verified successfully." + isVerified, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("Invalid OTP or OTP expired."+ isVerified, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Invalid OTP or OTP expired." + isVerified, HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -87,22 +88,21 @@ public class RegisterController {
         if (email.isBlank() || password.isBlank() || userType.isBlank()) {
             return new ResponseEntity<>("email, password & userType is required", HttpStatus.BAD_REQUEST);
         }
-        boolean isVerified = registerService.checkEmailVerificationForLogin(email, userType);
+        boolean isVerified = registerService.checkEmailVerification(email, userType);
         if (isVerified) {
             try {
-                authenticationManager.authenticate(
-                        new UsernamePasswordAuthenticationToken(email, password));
-                UserDetails user = authService.loadUserByEmailAndType(email, userType);
-                String jwt = jwtUtils.generateToken(user.getUsername());
-                return new ResponseEntity<>(jwt, HttpStatus.OK);
+                AuthUser authUser = registerService.findUserByEmailAndType(email, userType);
+                if (authUser != null && passwordEncoder.matches(password, authUser.getPassword())) {
+                    String jwt = jwtUtils.generateToken(email);
+                    return new ResponseEntity<>(jwt, HttpStatus.OK);
+                }
             } catch (Exception e) {
                 log.error("Exception occurred while createAuthenticationToken ", e);
                 return new ResponseEntity<>("Incorrect email or password", HttpStatus.BAD_REQUEST);
             }
-        } else {
-            return new ResponseEntity<>("Email not verified", HttpStatus.UNAUTHORIZED);
         }
-
+        return new ResponseEntity<>("Email not verified", HttpStatus.UNAUTHORIZED);
     }
+
 }
 
