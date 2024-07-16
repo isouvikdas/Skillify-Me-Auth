@@ -1,6 +1,7 @@
 package com.skillifyme.auth.Skillify.Me.Auth.controller;
 
 import com.skillifyme.auth.Skillify.Me.Auth.service.PasswordService;
+import com.skillifyme.auth.Skillify.Me.Auth.service.RegisterService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,14 +18,17 @@ public class ResetPasswordController {
     @Autowired
     private PasswordService passwordService;
 
+    @Autowired
+    private RegisterService registerService;
 
     @PutMapping("reset-password")
-    public ResponseEntity<?> resetPassword(@RequestBody Map<String, String> user) {
-        String email = user.get("email");
-        String newPassword = user.get("password");
+    public ResponseEntity<?> resetPassword(@RequestBody Map<String, String> payload) {
+        String email = payload.get("email");
+        String newPassword = payload.get("password");
+        String userType = payload.get("userType");
         try {
             if (newPassword != null) {
-                passwordService.resetPassword(email, newPassword);
+                passwordService.resetPassword(email, newPassword, userType.toUpperCase());
                 return new ResponseEntity<>("Password has been successfully reset", HttpStatus.OK);
             } else {
                 return new ResponseEntity<>("Password can't be empty", HttpStatus.OK);
@@ -40,7 +44,8 @@ public class ResetPasswordController {
     public ResponseEntity<?> verifyOtp(@RequestBody Map<String, String> user) {
         String email = user.get("email");
         String otp = user.get("otp");
-        boolean isVerified = passwordService.verifyOtp(email, otp);
+        String userType = user.get("userType");
+        boolean isVerified = passwordService.verifyOtp(email, otp, userType.toUpperCase());
         if (isVerified) {
             return new ResponseEntity<>("Email verified successfully."+ isVerified, HttpStatus.OK);
         } else {
@@ -49,11 +54,13 @@ public class ResetPasswordController {
     }
 
     @PostMapping("send-otp")
-    public ResponseEntity<?> sendOtp(@RequestParam String email) {
-        if (!email.isEmpty()) {
-            boolean isVerified = passwordService.checkEmailVerification(email);
+    public ResponseEntity<?> sendOtp(@RequestBody Map<String, String> payload) {
+        String email = payload.get("email");
+        String userType = payload.get("userType");
+        if (!email.isEmpty() && !userType.isEmpty()) {
+            boolean isVerified = registerService.checkEmailVerification(email, userType);
             if (isVerified) {
-                passwordService.sendOtpForVerification(email);
+                passwordService.sendOtpForVerification(email, userType.toUpperCase());
                 return new ResponseEntity<>("otp has been sent successfully", HttpStatus.OK);
             } else {
                 return new ResponseEntity<>("No user found with this email", HttpStatus.BAD_REQUEST);

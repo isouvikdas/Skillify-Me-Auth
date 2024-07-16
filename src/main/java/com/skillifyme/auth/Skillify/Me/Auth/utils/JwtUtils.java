@@ -22,9 +22,14 @@ public class JwtUtils {
         return Keys.hmacShaKeyFor(secretKey.getBytes());
     }
 
-    public String extractUsername(String token) {
+    public String extractEmail(String token) {
         Claims claims = extractAllClaims(token);
         return claims.getSubject();
+    }
+
+    public String extractUserType(String token) {
+        Claims claims = extractAllClaims(token);
+        return (String) claims.get("userType");
     }
 
     public Date extractExpiration(String token) {
@@ -39,9 +44,9 @@ public class JwtUtils {
                 .getPayload();
     }
 
-    public String generateToken(String username) {
+    public String generateToken(String email) {
         Map<String, Object> claims = new HashMap<>();
-        return createToken(claims, username);
+        return createToken(claims, email);
     }
 
     private String createToken(Map<String, Object> claims, String subject) {
@@ -65,3 +70,5 @@ public class JwtUtils {
     }
 
 }
+
+
