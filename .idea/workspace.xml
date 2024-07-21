@@ -4,7 +4,37 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e13d92a-0e91-46f6-9349-7afdb72c3860" name="Changes" comment="" />
+    <list default="true" id="3e13d92a-0e91-46f6-9349-7afdb72c3860" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/controller/AuthUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/controller/AuthUserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/controller/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/controller/RegisterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/service/RegisterService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/service/RegisterService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/service/AuthUserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/SkillifyMeAuthApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/config/SecurityConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/controller/AdminController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/controller/AuthUserController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/controller/RegisterController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/controller/ResetPasswordController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/filter/JwtFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/model/AuthUser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/model/Instructor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/model/TemporaryUser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/model/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/repository/AuthUserRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/repository/InstructorRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/repository/TemporaryUserRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/repository/UserRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/service/AuthService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/service/AuthServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/service/EmailService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/service/PasswordService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/service/RegisterService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/service/UserService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/utils/GenerateOTP.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/skillifyme/auth/Skillify/Me/Auth/utils/JwtUtils.class" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,8 +43,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -36,17 +66,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.SkillifyMeAuthApplication.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Skillify-Me-Auth"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.SkillifyMeAuthApplication.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;auth&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Skillify-Me-Auth&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.skillifyme.auth.Skillify.Me.Auth.model" />
+    </key>
+  </component>
   <component name="RunManager">
-    <configuration name="SkillifyMeAuthApplication" type="Application" factoryName="Application" nameIsGenerated="true">
+    <configuration name="SkillifyMeAuthApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.skillifyme.auth.Skillify.Me.Auth.SkillifyMeAuthApplication" />
       <module name="Skillify-Me-Auth" />
       <extension name="coverage">
@@ -59,6 +94,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.SkillifyMeAuthApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -70,6 +110,17 @@
       <updated>1718371374223</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -91,11 +142,6 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/skillifyme/auth/Skillify/Me/Auth/controller/RegisterUserController.java</url>
-          <line>34</line>
-          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
