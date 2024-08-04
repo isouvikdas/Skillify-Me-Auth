@@ -52,4 +52,14 @@ public class AuthUserService {
             throw new UsernameNotFoundException("User not found");
         }
     }
+
+    public boolean validateInstructor(String email) {
+        AuthUser instructor = instructorRepository.findByEmail(email);
+        return instructor != null && instructor.isVerified();
+    }
+
+    public boolean validateUser(String email) {
+        AuthUser user = userRepository.findByEmail(email);
+        return user != null && user.isVerified();
+    }
 }

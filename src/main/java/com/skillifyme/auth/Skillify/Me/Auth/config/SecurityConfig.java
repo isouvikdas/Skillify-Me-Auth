@@ -2,6 +2,7 @@ package com.skillifyme.auth.Skillify.Me.Auth.config;
 
 import com.skillifyme.auth.Skillify.Me.Auth.filter.JwtFilter;
 import com.skillifyme.auth.Skillify.Me.Auth.service.AuthService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,9 +29,18 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests(request -> request
-                        .requestMatchers("/register/**","/password/**", "/admin/**").permitAll()
-                        .requestMatchers( "/user/**").authenticated()
+                        .requestMatchers(
+                                "/register/**",
+                                "/password/**",
+                                "/admin/**",
+                                "/auth/validate/**"
+                        ).permitAll()
+                        .requestMatchers(
+                                "/auth/**"
+                        ).authenticated()
                         .anyRequest().authenticated())
+                .exceptionHandling(exception -> exception
+                        .authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized")))
                 .csrf(AbstractHttpConfigurer::disable)
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

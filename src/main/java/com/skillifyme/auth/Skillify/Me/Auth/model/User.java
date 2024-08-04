@@ -18,7 +18,6 @@ public class User implements AuthUser{
     @NonNull
     @Indexed(unique = true)
     private String email;
-    @Indexed(unique = true)
     @NonNull
     private String userName;
     @NonNull

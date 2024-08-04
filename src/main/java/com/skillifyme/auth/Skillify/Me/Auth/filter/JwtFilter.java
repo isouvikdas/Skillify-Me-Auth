@@ -37,9 +37,14 @@ public class JwtFilter extends OncePerRequestFilter {
         String userType = null;
         String jwt = null;
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-            jwt = authorizationHeader.substring(7);
-            email = jwtUtils.extractEmail(jwt);
-            userType = jwtUtils.extractUserType(jwt);
+            try {
+                jwt = authorizationHeader.substring(7);
+                email = jwtUtils.extractEmail(jwt);
+                userType = jwtUtils.extractUserType(jwt);
+            } catch (Exception e) {
+                logger.error("Exception occurred while extracting email from token", e);
+            }
+
         }
         if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = authService.loadUserByEmailAndType(email, userType);

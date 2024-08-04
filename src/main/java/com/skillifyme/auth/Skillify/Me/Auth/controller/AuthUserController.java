@@ -1,5 +1,6 @@
 package com.skillifyme.auth.Skillify.Me.Auth.controller;
 
+import com.skillifyme.auth.Skillify.Me.Auth.model.dto.ValidateTokenResponse;
 import com.skillifyme.auth.Skillify.Me.Auth.service.AuthService;
 import com.skillifyme.auth.Skillify.Me.Auth.service.RegisterService;
 import com.skillifyme.auth.Skillify.Me.Auth.service.AuthUserService;
@@ -17,7 +18,7 @@ import java.util.Map;
 
 @Slf4j
 @RestController
-@RequestMapping("user")
+@RequestMapping("auth")
 public class AuthUserController {
 
     @Autowired
@@ -68,5 +69,50 @@ public class AuthUserController {
             return new ResponseEntity<>("An error occurred", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PostMapping("validate/instructor")
+    public ResponseEntity<ValidateTokenResponse> validateInstructorToken(@RequestBody Map<String, String> payload) {
+        String token = payload.get("token");
+        ValidateTokenResponse response = new ValidateTokenResponse();
+
+        if (jwtUtils.validateToken(token)) {
+            String email = jwtUtils.extractEmail(token);
+
+            if (authUserService.validateInstructor(email)) {
+                response.setEmail(email);
+                response.setValid(true);
+                return ResponseEntity.ok(response);
+            } else {
+                response.setValid(false);
+                return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+            }
+        } else {
+            response.setValid(false);
+            return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+        }
+    }
+
+    @PostMapping("/validate/user")
+    public ResponseEntity<ValidateTokenResponse> validateUserToken(@RequestBody Map<String, String> payload) {
+        String token = payload.get("token");
+        ValidateTokenResponse response = new ValidateTokenResponse();
+
+        if (jwtUtils.validateToken(token)) {
+            String email = jwtUtils.extractEmail(token);
+
+            if (authUserService.validateUser(email)) {
+                response.setEmail(email);
+                response.setValid(true);
+                return ResponseEntity.ok(response);
+            } else {
+                response.setValid(false);
+                return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+            }
+        } else {
+            response.setValid(false);
+            return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+        }
+    }
+
 
 }
