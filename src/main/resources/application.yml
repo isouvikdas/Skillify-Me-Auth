@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: Skillify-Me-Auth
+  data:
+    mongodb:
+      uri: ${mongo_uri}
+      database: SkillifyMe
+      auto-index-creation: true
+      username: ${mongo_username}
+      password: ${mongo_password}
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${mail_username}
+    password: ${mail_password}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  secretKey: ${secret_key}
