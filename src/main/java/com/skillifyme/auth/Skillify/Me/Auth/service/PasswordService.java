@@ -41,7 +41,7 @@ public class PasswordService {
 
     public void resetPassword(String email, String newPassword, String userType) {
         AuthUser existingUser = registerService.findUserByEmailAndType(email, userType);
-        existingUser.setPassword(newPassword);
+        existingUser.setPassword(passwordEncoder.encode(newPassword));
         if (userType.equalsIgnoreCase("USER")) {
             userRepository.save((User) existingUser);
         } else {

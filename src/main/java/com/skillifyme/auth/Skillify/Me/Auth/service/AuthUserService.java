@@ -42,7 +42,7 @@ public class AuthUserService {
     public void updatePassword(String email, String newPassword, String userType) {
         AuthUser authUser = registerService.findUserByEmailAndType(email, userType);
         if (authUser != null) {
-            authUser.setPassword(newPassword);
+            authUser.setPassword(passwordEncoder.encode(newPassword));
             if (userType.equalsIgnoreCase("USER")) {
                 userRepository.save((User) authUser);
             } else {

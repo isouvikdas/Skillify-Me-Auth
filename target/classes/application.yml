@@ -1,26 +1,22 @@
 spring:
   application:
-    name: skillifymeauth
+    name: Skillify-Me-Auth
   data:
     mongodb:
-      uri: mongodb+srv://developersouvik02:XuslpqBEKNFWaH5Z@skillify.tzsm6tm.mongodb.net/?retryWrites=true&w=majority&appName=Skillify
+      uri: ${mongo_uri}
       database: SkillifyMe
       auto-index-creation: true
-      username: developersouvik02
-      password: XuslpqBEKNFWaH5Z
+      username: ${mongo_username}
+      password: ${mongo_password}
   mail:
     host: smtp.gmail.com
     port: 587
-    username: skillifyme0@gmail.com
-    password: rjnr cxgc azgk ohtp
+    username: ${mail_username}
+    password: ${mail_password}
     properties:
       mail:
         smtp:
           auth: true
           starttls:
             enable: true
-  secretKey: TaK+HaV^uvCHEFsEVfypW#7g9^k*Z8$V
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
+  secretKey: ${secret_key}

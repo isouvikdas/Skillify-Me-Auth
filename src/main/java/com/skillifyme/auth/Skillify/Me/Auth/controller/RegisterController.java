@@ -104,5 +104,17 @@ public class RegisterController {
         return new ResponseEntity<>("Email not verified", HttpStatus.UNAUTHORIZED);
     }
 
+    @PutMapping("health-check")
+    public ResponseEntity<String> healthCheck(@RequestBody Map<String, String> user) {
+        String username = user.get("username");
+        String message = "Everything is fine! " + username;
+        return new ResponseEntity<>(message, HttpStatus.OK);
+    }
+    @PostMapping("health-check/{username}")
+    public ResponseEntity<String> healthCheck(@PathVariable("username") String username) {
+        String message = "Everything is fine! " + username;
+        return new ResponseEntity<>(message, HttpStatus.OK);
+    }
+
 }
 
